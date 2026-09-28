@@ -13,6 +13,8 @@ import OpenCapsule from './components/OpenCapsule.jsx'
 import Notification from './components/Notification.jsx'
 import ProfileModal from './components/ProfileModal.jsx'
 import VintageParticles from './components/StarBackground.jsx'
+import TransactionFlow from './components/TransactionFlow.jsx'
+import CapsuleExplorer from './components/CapsuleExplorer.jsx'
 
 function App() {
   // ─── State Management ───
@@ -58,6 +60,9 @@ function App() {
         {/* ─── Hero Section ─── */}
         <HeroSection />
 
+        {/* ─── Transaction Flow Visualization ─── */}
+        <TransactionFlow walletAddress={walletAddress} />
+
         {/* ─── Section Label ─── */}
         <div className="section-label">
           <span className="section-label-text">Your Time Capsules</span>
@@ -80,6 +85,16 @@ function App() {
             showNotification={showNotification}
           />
         </main>
+
+        {/* ─── Capsule Explorer with Countdown ─── */}
+        <div className="section-label">
+          <span className="section-label-text">My Wallet</span>
+        </div>
+        <CapsuleExplorer
+          provider={provider}
+          signer={signer}
+          walletAddress={walletAddress}
+        />
 
         {/* ─── Footer ─── */}
         <footer className="app-footer">

@@ -89,11 +89,17 @@ function Navbar({ walletAddress, setWalletAddress, setProvider, setSigner, showN
 
       {/* ─── Navigation Pills ─── */}
       <div className="navbar-menu">
+        <button className="nav-pill" onClick={() => scrollTo('tx-flow-section')}>
+          Flow
+        </button>
         <button className="nav-pill" onClick={() => scrollTo('create-capsule-section')}>
           Seal
         </button>
         <button className="nav-pill" onClick={() => scrollTo('open-capsule-section')}>
           Open
+        </button>
+        <button className="nav-pill" onClick={() => scrollTo('explorer-section')}>
+          My Capsule
         </button>
       </div>
 
