@@ -1773,6 +1773,7 @@ body {
 .capsule-item-actions {
   display: flex;
   gap: var(--space-sm);
+  flex-wrap: wrap;
 }
 
 .btn-capsule-action {
@@ -1800,6 +1801,21 @@ body {
 
 .btn-capsule-action.primary:hover {
   background: var(--text-heading);
+}
+
+.btn-capsule-action.etherscan {
+  background: #21325b;
+  color: #f8f8f8;
+  border-color: #21325b;
+  transition: all var(--transition-fast);
+}
+
+.btn-capsule-action.etherscan:hover {
+  background: #3b5998;
+  border-color: #3b5998;
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(33, 50, 91, 0.35);
 }
 
 

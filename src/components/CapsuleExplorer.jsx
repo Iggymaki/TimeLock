@@ -263,6 +263,21 @@ function CapsuleExplorer({ provider, signer, walletAddress }) {
                     </span>
                   </div>
                 </div>
+
+                {/* Etherscan Link */}
+                <button
+                  className="btn-capsule-action etherscan"
+                  style={{ marginTop: '0.5rem', width: '100%', textAlign: 'center' }}
+                  onClick={() => {
+                    window.open(
+                      `https://sepolia.etherscan.io/address/${CONTRACT_ADDRESS}`,
+                      '_blank',
+                      'noopener,noreferrer'
+                    )
+                  }}
+                >
+                  🔍 View on Etherscan
+                </button>
               </div>
             )
           })}

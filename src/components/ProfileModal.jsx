@@ -264,6 +264,18 @@ function ProfileModal({ walletAddress, provider, signer, onClose }) {
                             🔓 Go to Open
                           </button>
                         )}
+                        <button
+                          className="btn-capsule-action etherscan"
+                          onClick={() => {
+                            window.open(
+                              `https://sepolia.etherscan.io/address/${CONTRACT_ADDRESS}`,
+                              '_blank',
+                              'noopener,noreferrer'
+                            )
+                          }}
+                        >
+                          🔍 Etherscan
+                        </button>
                       </div>
                     </div>
                   )
