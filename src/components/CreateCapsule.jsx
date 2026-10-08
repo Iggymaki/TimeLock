@@ -9,6 +9,7 @@ import { useState } from 'react'
 import { Contract } from 'ethers'
 import { Lock } from 'lucide-react'
 import { CONTRACT_ADDRESS, CONTRACT_ABI } from '../contracts/config.js'
+import { resolveCapsuleIdFromReceipt, saveTxHash } from '../utils/capsuleTx.js'
 
 // ─── Preset Timer Durations ───
 const PRESET_DURATIONS = [
@@ -112,7 +113,15 @@ function CreateCapsule({ signer, walletAddress, showNotification }) {
       const tx = await contract.createCapsule(message, BigInt(delaySeconds))
 
       setTxStatus({ type: 'info', text: '⛏️ Awaiting confirmation on Sepolia...' })
-      await tx.wait()
+      const receipt = await tx.wait()
+
+      // 🔗 จำ tx hash ของแคปซูลนี้ไว้ เพื่อให้ปุ่ม Etherscan ลิงก์ไปที่ tx ได้ตรงตัว
+      try {
+        const capsuleId = await resolveCapsuleIdFromReceipt(signer.provider, receipt)
+        if (capsuleId) saveTxHash(capsuleId, receipt.hash)
+      } catch (err) {
+        console.warn('Could not map capsule ID to tx hash', err)
+      }
 
       const summary = getDelaySummary()
       setTxStatus({ type: 'success', text: '✅ Your time capsule has been sealed!' })

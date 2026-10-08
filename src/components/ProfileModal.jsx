@@ -9,6 +9,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { Contract } from 'ethers'
 import { CONTRACT_ADDRESS, CONTRACT_ABI } from '../contracts/config.js'
+import { openCapsuleOnEtherscan } from '../utils/capsuleTx.js'
 
 function ProfileModal({ walletAddress, provider, signer, onClose }) {
   const [capsules, setCapsules] = useState([])
@@ -266,13 +267,9 @@ function ProfileModal({ walletAddress, provider, signer, onClose }) {
                         )}
                         <button
                           className="btn-capsule-action etherscan"
-                          onClick={() => {
-                            window.open(
-                              `https://sepolia.etherscan.io/address/${CONTRACT_ADDRESS}`,
-                              '_blank',
-                              'noopener,noreferrer'
-                            )
-                          }}
+                          onClick={() =>
+                            openCapsuleOnEtherscan(signer?.provider || provider, capsule.id, walletAddress)
+                          }
                         >
                           🔍 Etherscan
                         </button>
